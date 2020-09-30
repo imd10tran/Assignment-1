@@ -13,7 +13,7 @@ import java.io.*;
  * @author Paul Holden
  * @version July 2000
  */
-public class PointCPTest
+public class PointCP4Test
 {
   //Class methods *****************************************************
 
@@ -26,14 +26,12 @@ public class PointCPTest
    * If the user does not enter a valid sequence at the command line,
    * the program will prompte him or her.
    *
-   * @param args[0] The coordinate type.  P for polar and C for
-   *                cartesian.
-   * @param args[1] The value of X or RHO.
-   * @param args[2] The value of Y or THETA.
+   * @param args[1] The value of X 
+   * @param args[2] The value of Y 
    */
   public static void main(String[] args)
   {
-    PointCP point;
+    PointCP4 point;
 
     System.out.println("Cartesian-Polar Coordinates Conversion Program");
 
@@ -42,7 +40,7 @@ public class PointCPTest
     // If he did not, prompt the user for them.
     try
     {
-      point = new PointCP(args[0].toUpperCase().charAt(0), 
+      point = new PointCP4(args[0].toUpperCase().charAt(0), 
         Double.valueOf(args[1]).doubleValue(), 
         Double.valueOf(args[2]).doubleValue());
     }
@@ -63,11 +61,17 @@ public class PointCPTest
         return;
       }
     }
+    
     System.out.println("\nYou entered:\n" + point);
-    point.convertStorageToCartesian();
-    System.out.println("\nAfter asking to store as Cartesian:\n" + point);
-    point.convertStorageToPolar();
-    System.out.println("\nAfter asking to store as Polar:\n" + point);
+    
+    
+    System.out.println("\nStored values of point as Cartesian:\n(" + point.getX() + "," + point.getY() + ")");
+
+
+    System.out.println("\nStored values of point as Polar:\n(" + point.getRho() + "," + point.getTheta() + ")");
+   
+    
+    
   }
 
   /**
@@ -80,7 +84,7 @@ public class PointCPTest
    * @throws IOException If there is an error getting input from
    *         the user.
    */
-  private static PointCP getInput() throws IOException
+  private static PointCP4 getInput() throws IOException
   {
     byte[] buffer = new byte[1024];  //Buffer to hold byte input
     boolean isOK = false;  // Flag set if input correct
@@ -152,12 +156,13 @@ public class PointCPTest
         	System.out.println("Incorrect input");
         	isOK = false;  //Reset flag as so not to end while loop
         }
+        
       }
 
       //Reset flag so while loop will prompt for other arguments
       isOK = false;
     }
     //Return a new PointCP object
-    return (new PointCP(coordType, a, b));
+    return (new PointCP4(coordType, a, b));
   }
 }
