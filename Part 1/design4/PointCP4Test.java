@@ -1,17 +1,12 @@
-// This file contains material supporting section 2.9 of the textbook:
-// "Object Oriented Software Engineering" and is issued under the open-source
-// license found at www.lloseng.com 
+
 
 import java.io.*;
 
 /**
  * This class prompts the user for a set of coordinates, and then 
- * converts them from polar to cartesian or vice-versa.
+ * displays both polar and cartesian representations. Based on class PointCPTest.
  *
- * @author Fran&ccedil;ois B&eacute;langer
- * @author Dr Timothy C. Lethbridge
- * @author Paul Holden
- * @version July 2000
+ * @author Katada Freije
  */
 public class PointCP4Test
 {

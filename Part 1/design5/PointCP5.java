@@ -1,4 +1,5 @@
 
+
 /**
  * This class is an abstract definition for a coordinate  in either polar or
  * cartesian format. Based on class PointCP.

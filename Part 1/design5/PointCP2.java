@@ -1,5 +1,4 @@
 
-
 /**
  * This class contains polar coordinates of a point, calculating cartesian as needed. Based
  * on class PointCP2, extends abstract class PointCP5.

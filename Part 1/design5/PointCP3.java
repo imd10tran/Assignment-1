@@ -1,5 +1,4 @@
 
-
 /**
  * This class stores only cartesian coordinates, calculating polar as needed.
  * Based on class PointCP3, extends CP5.
