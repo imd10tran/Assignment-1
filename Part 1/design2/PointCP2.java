@@ -1,3 +1,4 @@
+
 public class PointCP2{
 	//instance variables
 	private double Rho;
@@ -44,7 +45,7 @@ public class PointCP2{
 	 * @param pointB The second point.
 	 * @return The distance between the two points.
 	 */
-	public double getDistance(PointCP pointB)
+	public double getDistance(PointCP2 pointB)
 	{
 		// Obtain differences in X and Y, sign is not important as these values
 		// will be squared later.
@@ -62,19 +63,19 @@ public class PointCP2{
 	 * @param rotation The number of degrees to rotate the point.
 	 * @return The rotated image of the original point.
 	 */
-	public PointCP rotatePoint(double rotation)
+	public PointCP2 rotatePoint(double rotation)
 	{
 		double radRotation = Math.toRadians(rotation);
 		double X = getX();
 		double Y = getY();
 
-		return new PointCP('C',
+		return new PointCP2(
 				(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
 				(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
 	}
 
 	public String toString(){
-		return "Stored as Polar (" + getRho() + "," + getTheta() + ")";
+		return "Stored as Polar [" + getRho() + "," + getTheta() + "]";
 	}
 
 	
