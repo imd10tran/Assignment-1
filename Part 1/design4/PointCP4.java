@@ -35,33 +35,39 @@ public class PointCP4 {
 
 	/**
 	 * Constructs a coordinate using cartesian coordinates.
+	 * Type: Type of parameters being passed
+	 * 'c' = cartesian, polar otherwise
 	 * 
+	 * X: Can also be rho  (if using polar)
+	 * Y: Can also be theta (if using polar, degrees)
+	 * 
+	 * @param type
 	 * @param x
 	 * @param y
 	 */
-	public PointCP4(double x, double y) {
+	public PointCP4(char type, double x, double y) {
+		
+		if(type != 'C' && type != 'P') {
+			throw new IllegalArgumentException("Invalid Parameters!");
+		}
+		
+		
+		if(type == 'C') {
 		this.x = x;
 		this.y = y;
 
 		this.rho = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-		this.theta = Math.atan(x / y);
+		this.theta = Math.toDegrees(Math.atan(x / y));
+		}else if(type == 'P'){
+			this.rho = x;
+			this.theta = y;
+
+			this.x = rho * Math.cos(Math.toRadians(theta));
+			this.y = rho * Math.sin(Math.toRadians(theta));
+		}
 	}
 
-	/**
-	 * 
-	 * Constructs a coordinate using polar coordinates
-	 * 
-	 * @param rho
-	 * @param theta
-	 */
 
-	public PointCP4(float rho, float theta) {
-		this.rho = (double) rho;
-		this.theta = (double) theta;
-
-		this.x = rho * Math.cos(theta);
-		this.y = rho * Math.sin(theta);
-	}
 
 	// Instance methods **************************************************
 
@@ -77,6 +83,11 @@ public class PointCP4 {
 		return rho;
 	}
 
+	
+	/**
+	 * Returns theta in degrees
+	 * @return
+	 */
 	public double getTheta() {
 		return theta;
 	}
@@ -90,7 +101,7 @@ public class PointCP4 {
 	 * @param pointB The second point.
 	 * @return The distance between the two points.
 	 */
-	public double getDistance(PointCP pointB) {
+	public double getDistance(PointCP4 pointB) {
 		// Obtain differences in X and Y, sign is not important as these values
 		// will be squared later.
 		double deltaX = getX() - pointB.getX();
@@ -107,12 +118,12 @@ public class PointCP4 {
 	 * @param rotation The number of degrees to rotate the point.
 	 * @return The rotated image of the original point.
 	 */
-	public PointCP rotatePoint(double rotation) {
+	public PointCP4 rotatePoint(double rotation) {
 		double radRotation = Math.toRadians(rotation);
 		double X = getX();
 		double Y = getY();
 
-		return new PointCP('C', (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
+		return new PointCP4('C', (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
 				(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
 	}
 
