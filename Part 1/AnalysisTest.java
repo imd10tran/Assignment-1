@@ -1,4 +1,4 @@
-package otherdesign;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,7 +14,7 @@ public class AnalysisTest {
 			Random r = new Random();
 
 			if (r.nextInt() % 2 == 0) {
-				d5Array.add(new PointCP2( r.nextDouble() * 60, r.nextDouble() * 60));
+				d5Array.add(new PointCP2(r.nextDouble() * 60, r.nextDouble() * 60));
 			} else {
 				d5Array.add(new PointCP3(r.nextDouble() * 60, r.nextDouble() * 60));
 			}
@@ -24,12 +24,13 @@ public class AnalysisTest {
 	public static void main(String[] args) {
 		AnalysisTest analysis = new AnalysisTest();
 
-		PointCP5 dummy5 = new PointCP3(3, 3);
+		PointCP5 dummy5 = new PointCP2(3, 3);
 		
 		double start = System.currentTimeMillis();
 		
 		
 		double opTime  = 0;
+		
 		for (PointCP5 p : analysis.d5Array) {
 			double opStart = System.currentTimeMillis();
 			p.getX();
@@ -39,11 +40,13 @@ public class AnalysisTest {
 			p.getDistance(dummy5);
 			p.rotatePoint(90);
 			p.toString();
+			
+			
 			opTime += (System.currentTimeMillis() - opStart) / 1000;
 		}
 
 		System.out.println("Elapsed time: " + (System.currentTimeMillis() - start) / 1000);
-		System.out.println("Average time to run all methods for one class: " + opTime / 10000000);
+		System.out.println("Time for all methods of PointCP5: " + opTime / 10000000);
 		
 	
 	}
