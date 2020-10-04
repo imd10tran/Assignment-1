@@ -1,20 +1,35 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Size{
-	public static int numberOfElements = 100000000;
-	public static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+	public static int numberOfElements;
+
+	public static void setNumberOfElements(){
+		numberOfElements = 1000000;
+	}
+
+	public static int getNumberOfElements(){
+		Size.setNumberOfElements();
+		return numberOfElements;
+	}
+
+	public static char getRandomChar(){
+		Random random = new Random();
+		char letter = (char)(random.nextInt(26)+'a');
+		return letter;
+	}
 
 	public static double testArrayTime(){
 		ArrayList<Character> testArray = new ArrayList<Character>();
 		long start = System.currentTimeMillis();
-		for(int i = 0; i<numberOfElements; i++){
-			char c = (char) alphabet.charAt(i%26);
-			testArray.add(c);}
+		for(int i = 0; i<Size.getNumberOfElements(); i++){
+			char letter = Size.getRandomChar();
+			testArray.add(letter);}
 		long stop = System.currentTimeMillis();
 		double timeElapsed = ((double) stop - start)/1000;
 		return timeElapsed;}
 	
 	public static void main(String[] args){
-		System.out.println(testArrayTime());
+		System.out.println("It took "+testArrayTime()+" seconds to populate array");
 	}
 }
